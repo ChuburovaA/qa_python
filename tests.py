@@ -66,3 +66,13 @@ class TestBooksCollector:
         collector.add_new_book(children_book["genre"])
         collector.set_book_genre(children_book["name"], children_book["genre"])
         assert collector.get_books_for_children() is None
+
+    # Добавляем книгу в избранное
+    def test_add_book_in_favorites_new_book(self, favorite_book):
+        collector = BooksCollector()
+
+        collector.add_new_book(favorite_book["name"])
+        collector.set_book_genre(favorite_book["name"], favorite_book["genre"])
+        collector.add_book_in_favorites(favorite_book["genre"])
+
+        assert collector.favorites == [favorite_book["name"]]
