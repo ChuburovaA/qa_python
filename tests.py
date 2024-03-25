@@ -12,3 +12,9 @@ class TestBooksCollector:
         # проверяем, что добавилось именно две
         # словарь books_rating, который нам возвращает метод get_books_rating, имеет длину 2
         assert len(collector.books_genre) == 2
+
+    # Установить жанр книги которой нет в словаре
+    def test_set_book_genre(self, book2_dict):
+        collector = BooksCollector()
+        collector.set_book_genre(book2_dict["name"], book2_dict["genre"])
+        assert collector.get_book_genre(book2_dict["name"]) is None
