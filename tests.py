@@ -18,3 +18,10 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.set_book_genre(book2_dict["name"], book2_dict["genre"])
         assert collector.get_book_genre(book2_dict["name"]) is None
+
+# Устанавливаем жанр книги, которая есть в словаре и жанр допустимый
+    def test_set_book_genre_have_in_dictionary(self, book_dict):
+        collector = BooksCollector()
+        collector.add_new_book(book_dict["name"])
+        collector.set_book_genre(book_dict["name"], book_dict["genre"])
+        assert collector.get_book_genre(book_dict["name"]) == "Мультфильмы"
