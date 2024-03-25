@@ -25,3 +25,15 @@ class TestBooksCollector:
         collector.add_new_book(book_dict["name"])
         collector.set_book_genre(book_dict["name"], book_dict["genre"])
         assert collector.get_book_genre(book_dict["name"]) == "Мультфильмы"
+
+    # Получаем список книг с жанром, которого нет в списке доступных жанров
+    def test_get_books_with_specific_genre_add_new_genre(self, book_dict, book2_dict):
+        collector = BooksCollector()
+
+        collector.add_new_book(book_dict["name"])
+        collector.add_new_book(book2_dict["name"])
+
+        collector.set_book_genre(book_dict["name"], "Роман")
+        collector.set_book_genre(book2_dict["name"], "Роман")
+
+        assert collector.get_books_with_specific_genre("Роман") == []
