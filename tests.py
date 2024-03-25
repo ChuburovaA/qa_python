@@ -46,3 +46,15 @@ class TestBooksCollector:
         collector.set_book_genre(book2_dict["name"], "Фантастика")
 
         assert collector.get_books_with_specific_genre("Фантастика") == [book_dict["name"], book2_dict["name"]]
+
+    #Список книг для детей с подходящим жанром
+    def test_get_books_for_children_genre_for_children(self):
+        collector = BooksCollector()
+
+        collector.add_new_book("Мышка в поле")
+        collector.add_new_book("Сказка про математику")
+
+        collector.set_book_genre("Мышка в поле", "Комедия")
+        collector.set_book_genre("Сказка про математику", "Комедия")
+
+        assert collector.get_books_for_children() == ["Мышка в поле", "Сказка про математику"]
