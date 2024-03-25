@@ -87,3 +87,15 @@ class TestBooksCollector:
         collector.delete_book_from_favorites(favorite_book["name"])
 
         assert collector.delete_book_from_favorites(favorite_book["name"]) is None
+
+    # Получаем список избранных книг
+    def test_get_list_of_favorites_books_add_two_books(self, favorite_book, book_dict):
+        collector = BooksCollector()
+
+        collector.add_new_book(favorite_book["name"])
+        collector.add_new_book(book_dict["name"])
+
+        collector.add_book_in_favorites(favorite_book["name"])
+        collector.add_book_in_favorites(book_dict["name"])
+
+        assert collector.get_list_of_favorites_books() == [favorite_book["name"], book_dict["name"]]
