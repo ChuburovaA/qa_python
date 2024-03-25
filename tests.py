@@ -58,3 +58,11 @@ class TestBooksCollector:
         collector.set_book_genre("Сказка про математику", "Комедия")
 
         assert collector.get_books_for_children() == ["Мышка в поле", "Сказка про математику"]
+
+    # Список книг для детей с неподходящим жанром
+    def test_get_books_for_children_genre_for_not_children(self, children_book):
+        collector = BooksCollector()
+
+        collector.add_new_book(children_book["genre"])
+        collector.set_book_genre(children_book["name"], children_book["genre"])
+        assert collector.get_books_for_children() is None
