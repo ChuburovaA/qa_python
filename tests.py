@@ -76,3 +76,14 @@ class TestBooksCollector:
         collector.add_book_in_favorites(favorite_book["genre"])
 
         assert collector.favorites == [favorite_book["name"]]
+
+    # Удаляем книгу из избранного
+    def test_delete_book_from_favorites_get_book(self, favorite_book):
+        collector = BooksCollector()
+
+        collector.add_new_book(favorite_book["name"])
+        collector.set_book_genre(favorite_book["name"], favorite_book["genre"])
+        collector.add_book_in_favorites(favorite_book["name"])
+        collector.delete_book_from_favorites(favorite_book["name"])
+
+        assert collector.delete_book_from_favorites(favorite_book["name"]) is None
