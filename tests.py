@@ -37,3 +37,12 @@ class TestBooksCollector:
         collector.set_book_genre(book2_dict["name"], "Роман")
 
         assert collector.get_books_with_specific_genre("Роман") == []
+
+    # Получаем список книг с существующим жанром
+    def test_get_books_with_specific_genre_have_in_dictionary(self, book_dict, book2_dict):
+        collector = BooksCollector()
+
+        collector.set_book_genre(book_dict["name"], "Фантастика")
+        collector.set_book_genre(book2_dict["name"], "Фантастика")
+
+        assert collector.get_books_with_specific_genre("Фантастика") == [book_dict["name"], book2_dict["name"]]
