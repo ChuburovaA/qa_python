@@ -322,3 +322,14 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+#Игнорирование папки .idea
+.idea
+
+# Игнорирование папки .pytest_cache
+.pytest_cache
+
+# Игнорирование папки _pycache_
+_pycache_
+
+# Игнорирование файла.gitignore
+.gitignore
