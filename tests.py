@@ -49,3 +49,7 @@ class TestBooksCollector:
         collector.set_book_genre("Book2", "Детективы")
 
         assert collector.get_books_with_specific_genre(genre) == expected_books
+
+    # Получение словаря books_genre
+    def test_get_books_genre_add_dictionary(self, collector):
+        assert collector.get_books_genre() == {}
