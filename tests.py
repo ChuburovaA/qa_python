@@ -83,3 +83,9 @@ class TestBooksCollector:
         assert "Book1" in books_for_children
         assert "Book2" not in books_for_children
         assert "Book3" not in books_for_children
+
+    # Добавление книги в избранное
+    def test_add_book_in_favorites(self, collector):
+        collector.add_new_book("Book1")
+        collector.add_book_in_favorites("Book1")
+        assert collector.get_list_of_favorites_books() == ["Book1"]
