@@ -102,3 +102,10 @@ class TestBooksCollector:
         collector.add_book_in_favorites("Book1")
         collector.add_book_in_favorites("Book1")
         assert len(collector.get_list_of_favorites_books()) == 1
+
+    # Удаляем книгу из избранного
+    def test_delete_book_from_favorites(self, collector):
+        collector.add_new_book("Book1")
+        collector.add_book_in_favorites("Book1")
+        collector.delete_book_from_favorites("Book1")
+        assert len(collector.get_list_of_favorites_books()) == 0
