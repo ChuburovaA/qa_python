@@ -44,3 +44,41 @@ class TestBooksCollector:
         collector.add_new_book("Book1")
         collector.set_book_genre("Book1", "Ужасы")
         assert collector.get_book_genre("Book1") == "Ужасы"
+
+# Получаем список книг с определённым жанром
+    @pytest.mark.parametrize(
+        "genre, expected_books",
+        [
+            ("Фантастика", ["Book1"]),
+            ("Детективы", ["Book2"]),
+        ]
+    )
+    def test_get_books_with_specific_genre(self, genre, expected_books):
+        collector = BooksCollector()
+        # Вывод списка книг с определённым жанром
+        collector.add_new_book("Book1")
+        collector.add_new_book("Book2")
+
+        collector.set_book_genre("Book1", "Фантастика")
+        collector.set_book_genre("Book2", "Детективы")
+
+        assert collector.get_books_with_specific_genre(genre) == expected_books
+
+    # Получение словаря books_genre
+    def test_get_books_genre_add_dictionary(self, collector):
+        assert collector.get_books_genre() == {}
+
+    # Получаем список книг для детей (тут можно было использовать параметаризацию, но мне так понятнее и проще)
+    def test_get_books_for_children(self, collector):
+        collector.add_new_book("Book1")
+        collector.set_book_genre("Book1", "Фантастика")
+        collector.add_new_book("Book2")
+        collector.set_book_genre("Book2", "Мультфильмы")
+        collector.add_new_book("Book3")
+        collector.set_book_genre("Book3", "Комедии")
+
+        books_for_children = collector.get_books_for_children()
+
+        assert "Book1" in books_for_children
+        assert "Book2" in books_for_children
+        assert "Book3" in books_for_children
