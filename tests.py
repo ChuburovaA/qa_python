@@ -27,3 +27,9 @@ class TestBooksCollector:
 
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
+
+# Установка жанра книге
+    def test_set_book_genre_add_genre_new_book(self, collector):
+        collector.add_new_book("Book1")
+        collector.set_book_genre("Book1", "Фантастика")
+        assert collector.get_book_genre("Book1") == "Фантастика"
