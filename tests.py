@@ -103,3 +103,8 @@ class TestBooksCollector:
         collector.add_new_book("Book1")
         collector.add_book_in_favorites("Book1")
         assert collector.get_list_of_favorites_books() == ["Book1"]
+
+# Добавляем книгу в избранное, которой нет в словаре
+    def test_add_book_in_favorites_dont_add_in_dictionary(self, collector):
+        collector.add_new_book("Book1")
+        assert "Book 1" not in collector.favorites
