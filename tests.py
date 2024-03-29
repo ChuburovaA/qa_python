@@ -123,3 +123,13 @@ class TestBooksCollector:
         collector.add_book_in_favorites("Book1")
         collector.delete_book_from_favorites("Book1")
         assert len(collector.get_list_of_favorites_books()) == 0
+
+# Получаем список избранных книг(тут можно было использовать параметаризацию, но мне так понятнее и проще)
+    def test_get_list_of_favorites_books_add_two_books(self, collector):
+        collector.add_new_book("Book1")
+        collector.add_new_book("Book2")
+
+        collector.add_book_in_favorites("Book1")
+        collector.add_book_in_favorites("Book2")
+
+        assert collector.get_list_of_favorites_books() == ["Book1", "Book2"]
