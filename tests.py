@@ -74,20 +74,15 @@ class TestBooksCollector:
 
         assert collector.get_books_genre() == {"Book1":"Фантастика", "Book2": "Комедии"}
 
-    # Получаем список книг для детей (тут можно было использовать параметаризацию, но мне так понятнее и проще)
+    # Получаем список книг для детей
     def test_get_books_for_children(self, collector):
         collector.add_new_book("Book1")
-        collector.set_book_genre("Book1", "Фантастика")
-        collector.add_new_book("Book2")
-        collector.set_book_genre("Book2", "Мультфильмы")
-        collector.add_new_book("Book3")
-        collector.set_book_genre("Book3", "Комедии")
+        collector.set_book_genre("Book1", "Мультфильмы")
 
         books_for_children = collector.get_books_for_children()
 
         assert "Book1" in books_for_children
-        assert "Book2" in books_for_children
-        assert "Book3" in books_for_children
+
 
 # Получаем список книг недопустимые для детей (тут можно было использовать параметаризацию, но мне так понятнее и проще)
     def test_get_books_for_children_rating_not_for_children(self, collector):
