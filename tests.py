@@ -29,7 +29,7 @@ class TestBooksCollector:
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
 
 # Установка жанра книге
-    def test_set_book_genre_add_genre_new_book(self, collector):
+    def test_set_book_genre_add_genre_new_book(self, collector): # Фиксура написана в самом начале теста
         collector.add_new_book("Book1")
         collector.set_book_genre("Book1", "Фантастика")
         assert collector.get_book_genre("Book1") == "Фантастика"
@@ -66,7 +66,13 @@ class TestBooksCollector:
 
     # Получение словаря books_genre
     def test_get_books_genre_add_dictionary(self, collector):
-        assert collector.get_books_genre() == {}
+        collector.add_new_book("Book1")
+        collector.set_book_genre("Book1", "Фантастика")
+
+        collector.add_new_book("Book2")
+        collector.set_book_genre("Book2", "Комедии")
+
+        assert collector.get_books_genre() == {"Book1":"Фантастика", "Book2": "Комедии"}
 
     # Получаем список книг для детей (тут можно было использовать параметаризацию, но мне так понятнее и проще)
     def test_get_books_for_children(self, collector):
@@ -107,7 +113,7 @@ class TestBooksCollector:
 # Добавляем книгу в избранное, которой нет в словаре
     def test_add_book_in_favorites_dont_add_in_dictionary(self, collector):
         collector.add_new_book("Book1")
-        assert "Book 1" not in collector.favorites
+        assert "Book1" not in collector.favorites
 
 # Добавляем уже существующую книгу в избранное
     def test_add_existing_book_in_favorites_if_book_in_favorites(self, collector):
@@ -133,3 +139,4 @@ class TestBooksCollector:
         collector.add_book_in_favorites("Book2")
 
         assert collector.get_list_of_favorites_books() == ["Book1", "Book2"]
+
